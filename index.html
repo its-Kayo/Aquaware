@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaAware - Water Outage Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">AquaAware</h1>
+            <nav class="nav-menu">
+                <a href="#map" class="nav-link active">Map</a>
+                <a href="#report" class="nav-link">Report Issue</a>
+                <a href="#tips" class="nav-link">Conservation</a>
+                <a href="#alerts" class="nav-link">Alerts</a>
+                <div class="user-menu" id="userMenu">
+                    <span id="username">Guest</span>
+                    <button id="loginBtn" class="btn-primary">Login</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Map Section -->
+        <section id="mapSection" class="section active">
+            <div class="map-controls">
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="reportMode"> Report Mode
+                    </label>
+                    <select id="filterSeverity">
+                        <option value="all">All Severities</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <button id="refreshMap" class="btn-secondary">Refresh</button>
+                </div>
+            </div>
+            <div id="map" class="map-container"></div>
+        </section>
+
+        <!-- Report Form Section -->
+        <section id="reportSection" class="section">
+            <div class="form-container">
+                <h2>Report Water Issue</h2>
+                <form id="reportForm" class="report-form">
+                    <div class="form-group">
+                        <label for="issueType">Issue Type*</label>
+                        <select id="issueType" name="issueType" required>
+                            <option value="">Select issue type</option>
+                            <option value="no_water">No Water</option>
+                            <option value="low_pressure">Low Pressure</option>
+                            <option value="dirty_water">Dirty Water</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location*</label>
+                        <input type="text" id="location" name="location" required placeholder="Enter address or use GPS">
+                        <button type="button" id="useGPS" class="btn-secondary">Use My Location</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description (Optional)</label>
+                        <textarea id="description" name="description" rows="3" placeholder="Additional details about the issue"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="photo">Photo (Optional)</label>
+                        <input type="file" id="photo" name="photo" accept="image/*">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Submit Report</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script src="js/map.js"></script>
+    <script src="js/offline.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
